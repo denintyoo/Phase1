@@ -15,8 +15,6 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        
-        
     }
 
     private void Awake()
