@@ -9,9 +9,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     public float speed;
     [SerializeField]
-    public float maxRange;
-    [SerializeField]
-    public float minRange;
+    //public float maxRange;
+    //[SerializeField]
+    //public float minRange;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
 
     public void FollowPlayer()
     {
-        animator.SetBool("isMoving", true);
+        //animator.SetBool("isMoving", true);
         animator.SetFloat("moveX", (target.position.x - transform.position.x));
         animator.SetFloat("moveX", (target.position.x - transform.position.x));
 
