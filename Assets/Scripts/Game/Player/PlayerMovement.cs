@@ -26,4 +26,22 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); 
     }
+
+    public void TakeDamage(int damage)
+    {
+        if (!invincible)
+        {
+            Debug.Log(damage);
+            invincible = true;
+            StartCoroutine(startinvicibletimer());
+        }
+        
+    }
+
+    private bool invincible = false;
+    private IEnumerator startinvicibletimer()
+    {
+        yield return new WaitForSeconds(1);
+        invincible = false;
+    }
 }

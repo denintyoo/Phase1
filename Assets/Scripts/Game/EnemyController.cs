@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        debox.PlayerDetected += isdetected => canFollowPlayer = isdetected;
     }
 
     private void Awake()
@@ -34,11 +35,32 @@ public class EnemyController : MonoBehaviour
 
     public void FollowPlayer()
     {
-        //animator.SetBool("isMoving", true);
-        animator.SetFloat("moveX", (target.position.x - transform.position.x));
-        animator.SetFloat("moveX", (target.position.x - transform.position.x));
+        if (canFollowPlayer)
+        {
+            //animator.SetBool("isMoving", true);
+            animator.SetFloat("moveX", (target.position.x - transform.position.x));
+            animator.SetFloat("moveX", (target.position.x - transform.position.x));
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        }
+       
+    }
+    public bool canFollowPlayer = false;
+    public DetectionBox debox;
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && canFollowPlayer)
+        {
+            collision.gameObject.SendMessage("TakeDamage", 69);
+            canFollowPlayer = false;
+            StartCoroutine(cooldown());
+
+        }
     }
 
+    private IEnumerator cooldown()
+    {
+        yield return new WaitForSeconds(1);
+        canFollowPlayer = true;
+    }
 }
