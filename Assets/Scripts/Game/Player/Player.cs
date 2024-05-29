@@ -22,10 +22,14 @@ public class Player : MonoBehaviour
     private void Update()
     {
         movement.MovementHandler();
+        if (Input.GetKey(KeyCode.Space))
+        {
+            combat.DoAttack();
+        }
     }
 
     public void FixedUpdate()
     {
-        movement.UpdatePosition(stats.speed);
+        movement.UpdatePosition(stats.Speed);
     }
 }
