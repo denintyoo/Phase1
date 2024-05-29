@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     public int Health = 10;
     public int Attack = 2;
-    public int AttackCooldown = 1;
+    public float AttackCooldown = 0.4f;
     public int Magic = 4;
-    public int speed = 5;
+    public int Speed = 5;
 }

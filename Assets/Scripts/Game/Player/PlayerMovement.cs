@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public Animator animator;
+    private Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private bool lastIsLeft; // to verify that last direction is left (delete and edit playerAnimator if player already have separate left and right idle sprite)
     public bool canMove = true;
-
+    private bool moving = false;
     private Vector2 movement;
 
     public void Init()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -24,17 +30,58 @@ public class PlayerMovement : MonoBehaviour
             movement.y = Input.GetAxisRaw("Vertical");
             movement = new Vector2(movement.x, movement.y).normalized;
             
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
-            animator.SetFloat("Speed", movement.sqrMagnitude);
+            AnimationHandler();
+            // animator.SetFloat("Horizontal", movement.x);
+            // animator.SetFloat("Vertical", movement.y);
+            // animator.SetFloat("Speed", movement.sqrMagnitude);
         }
         else
         {
             rb.velocity = Vector2.zero;
-            Debug.Log("cannot move");
+            // Debug.Log("cannot move");
             animator.SetFloat("Speed", 0);
         }
 
+    }
+
+    // Magic happens here
+    private void AnimationHandler()
+    {   
+        if (movement.magnitude > 0.1f || movement.magnitude < -0.1f)    // Check if moving and assign to "moving"
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+        
+        //* LastIsLeft Checker
+        if (movement.x < 0)                                            // Check if last horizontal movement is to the left (Delete if player have both side of horizontal animation)
+        {
+            lastIsLeft = true;
+        }
+        else if (movement.x > 0 || movement.y != 0)                   // if any other direction is the last movement, set to false
+        {
+            lastIsLeft = false; 
+        }
+
+        if (lastIsLeft == true && !moving)                            // Check if LastIsLeft and not moving, then flipX
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
+
+        if (moving)                                                     // if "moving" is true then animate 4 cardinal direction
+        {
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+        }
+
+        animator.SetBool("Moving", moving);
     }
 
     public void UpdatePosition(int moveSpeed)

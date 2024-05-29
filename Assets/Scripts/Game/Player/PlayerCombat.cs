@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
 
     public PlayerStats playerStats;
     public Player player;
+    private BoxCollider2D Hitbox;
     private bool isAttacking = false;
     public bool IsAttacking
     {
@@ -26,17 +27,20 @@ public class PlayerCombat : MonoBehaviour
             StartCoroutine(AttackRoutine());
         }
     }
+    private void PositionHitbox(Vector2 direction)
+    {
+        float distance = 1.0f;
+        Hitbox.transform.localPosition = direction * distance;
+    }
 
     private IEnumerator AttackRoutine()
     {
         IsAttacking = true;
         // Animation here
-        Debug.Log("Attacking...");
+        Debug.Log($"Attacking for {playerStats.AttackCooldown}");
 
         // Attack Speed Cooldown
         yield return new WaitForSeconds(playerStats.AttackCooldown);
-        Debug.Log($"Cooldown for{playerStats.AttackCooldown}");
-
         IsAttacking = false;
         
         Debug.Log("Attack finished.");

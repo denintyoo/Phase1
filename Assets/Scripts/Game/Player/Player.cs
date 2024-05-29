@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         movement.MovementHandler();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.Space))
         {
             combat.DoAttack();
         }
@@ -30,6 +30,6 @@ public class Player : MonoBehaviour
 
     public void FixedUpdate()
     {
-        movement.UpdatePosition(stats.speed);
+        movement.UpdatePosition(stats.Speed);
     }
 }
