@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         movement.MovementHandler();
+        if (Input.GetMouseButtonDown(0))
+        {
+            combat.DoAttack();
+        }
     }
 
     public void FixedUpdate()

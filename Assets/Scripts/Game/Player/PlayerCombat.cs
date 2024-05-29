@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+
     public PlayerStats playerStats;
     public Player player;
-    private bool isAttacking;
+    private bool isAttacking = false;
     public bool IsAttacking
     {
         get { return isAttacking; }
         private set 
             { 
                 isAttacking = value; 
-                player.movement.SetCanMove(isAttacking);
+                player.movement.SetCanMove(!isAttacking);
+                Debug.Log($"set canmove to{isAttacking}");
             }
     }
 

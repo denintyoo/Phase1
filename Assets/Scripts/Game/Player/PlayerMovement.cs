@@ -6,11 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Animator animator;
-    public bool canMove
-    {
-        get;
-        private set;
-    }
+    public bool canMove = true;
+
     private Vector2 movement;
 
     public void Init()
@@ -21,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     public void MovementHandler()
     {
-        if (canMove) // If can move is true then enable moving components. Else? Don't move
+        if (canMove) // If canMove is true then enable moving components. Else? Don't move
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -31,18 +28,32 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Speed", movement.sqrMagnitude);
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            Debug.Log("cannot move");
+            animator.SetFloat("Speed", 0);
+        }
 
     }
 
     public void UpdatePosition(int moveSpeed)
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); 
+        if (canMove)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); 
+        }
+        else
+        {
+            rb.MovePosition(rb.position);
+        }
     }
 
     // This is to stop the player movement if the player casting / attacking.
     public void SetCanMove(bool value)
     {
         canMove = value;
+        Debug.Log($"set canmove to{canMove}");
     }
 }
 
