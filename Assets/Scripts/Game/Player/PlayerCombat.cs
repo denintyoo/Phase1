@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public PlayerStats playerStats;
-
+    public Player player;
+    private bool isAttacking;
     public bool IsAttacking
     {
-        get { return IsAttacking; }
-        public set { IsAttacking = value; }
+        get { return isAttacking; }
+        private set 
+            { 
+                isAttacking = value; 
+                player.movement.SetCanMove(isAttacking);
+            }
     }
 
     public void DoAttack()
@@ -27,8 +32,8 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("Attacking...");
 
         // Attack Speed Cooldown
-        yield return new WaitForSeconds(playerStats.attackDuration);
-        Debug.Log($"Cooldown for{playerStats.attackDuration}");
+        yield return new WaitForSeconds(playerStats.AttackCooldown);
+        Debug.Log($"Cooldown for{playerStats.AttackCooldown}");
 
         IsAttacking = false;
         
