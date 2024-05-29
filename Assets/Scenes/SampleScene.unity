@@ -8264,7 +8264,7 @@ GameObject:
   - component: {fileID: 634256725}
   - component: {fileID: 634256724}
   m_Layer: 0
-  m_Name: Hitbox
+  m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -27771,8 +27771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be13dcf5870b36641817595062a767ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1954163830}
-  animator: {fileID: 1954163833}
   canMove: 1
 --- !u!50 &1954163830
 Rigidbody2D:
@@ -27951,8 +27949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be13dcf5870b36641817595062a767ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  animator: {fileID: 0}
   canMove: 1
 --- !u!114 &1954163838
 MonoBehaviour:
@@ -27996,7 +27992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   Attack: 2
-  AttackCooldown: 0.01
+  AttackCooldown: 0.4
   Magic: 4
   Speed: 5
 --- !u!1 &2006092203
