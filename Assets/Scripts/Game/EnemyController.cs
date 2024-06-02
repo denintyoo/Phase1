@@ -63,9 +63,4 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1);
         canFollowPlayer = true;
     }
-
-    public void TakeDamage(int damage)
-    {
-        Debug.Log("Take Damage");
-    }
 }
