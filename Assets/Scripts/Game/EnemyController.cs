@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     {
         //if (Vector3.Distance(target.position, transform.position) <= maxRange && Vector3.Distance(target.position, transform.position)>= minRange)
         FollowPlayer();
-      
+
     }
 
     public void FollowPlayer()
@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
-       
+
     }
     public bool canFollowPlayer = false;
     public DetectionBox debox;
