@@ -10,8 +10,6 @@ public class Hitbox : MonoBehaviour
     void Start()
     {
         damage = MainPlayerClass.stats.Attack;
-
-
     }
 
     void OnTriggerEnter2D(Collider2D Collision)

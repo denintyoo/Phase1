@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-
     public PlayerStats playerStats;
     public Player player;
     public GameObject hitbox;
@@ -18,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
             { 
                 isAttacking = value; 
                 player.movement.SetCanMove(!isAttacking);
-                Debug.Log($"set canmove to {isAttacking}");
+                Debug.Log($"set canmove to {!isAttacking}");
             }
     }
 
@@ -96,7 +95,6 @@ public class PlayerCombat : MonoBehaviour
         // Use Animation Event to flash hitbox
         IsAttacking = false;
 
-        
         // Debug.Log("Attack finished.");
     }
 }

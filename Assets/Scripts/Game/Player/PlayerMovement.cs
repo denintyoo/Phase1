@@ -28,8 +28,6 @@ public class PlayerMovement : MonoBehaviour
             movementDirection.x = Input.GetAxisRaw("Horizontal");
             movementDirection.y = Input.GetAxisRaw("Vertical");
             movementDirection = new Vector2(movementDirection.x, movementDirection.y).normalized;
-            
-            AnimationHandler();
             // animator.SetFloat("Horizontal", movementDirection.x);
             // animator.SetFloat("Vertical", movementDirection.y);
             // animator.SetFloat("Speed", movementDirection.sqrMagnitude);
@@ -37,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
             if (movementDirection.magnitude > 0.1f || movementDirection.magnitude < -0.1f)    // Check if moving and assign to "moving"
             {
                 moving = true;
-
                 // Store Last Movement Direction
                 if (movementDirection.y > 0)
                 {
@@ -58,19 +55,21 @@ public class PlayerMovement : MonoBehaviour
                         lastDirection = "Right";
                     }
                 }
+                AnimationHandler();
             }
-            else 
+            else
             {
                 moving = false;
+
             }
-
-
         }
         else
         {
             // animator.SetFloat("Speed", 0);
             rb.velocity = Vector2.zero;
             Debug.Log("cannot move");
+            moving = false;
+            AnimationHandler();
         }
     }
 
@@ -84,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            animator.SetBool("Moving", false);
             if (lastDirection == "Up")
             {
                 animator.SetFloat("Vertical", 1);
@@ -101,7 +101,6 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetFloat("Horizontal", 1);
             }
         }
-
         animator.SetBool("Moving", moving);
     }
 
