@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 moving = false;
+                animator.SetBool("Moving", false);
 
             }
         }
@@ -83,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            animator.SetBool("Moving", false);
+            
             if (lastDirection == "Up")
             {
                 animator.SetFloat("Vertical", 1);

@@ -34527,6 +34527,7 @@ GameObject:
   - component: {fileID: 634256723}
   - component: {fileID: 634256725}
   - component: {fileID: 634256724}
+  - component: {fileID: 634256726}
   m_Layer: 0
   m_Name: AttackHitbox
   m_TagString: Untagged
@@ -34633,7 +34634,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.014110789, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -34644,8 +34645,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8212588, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &634256726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634256722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02730457ca80d6f428932e0de22895bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainPlayerClass: {fileID: 1954163838}
 --- !u!1 &681421256
 GameObject:
   m_ObjectHideFlags: 0
@@ -90121,11 +90135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484e8d9e74aec1642bf9d4616e376c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  target: {fileID: 0}
-  speed: 2
-  canFollowPlayer: 0
-  debox: {fileID: 1015062651}
 --- !u!95 &1596076791
 Animator:
   serializedVersion: 5
@@ -90598,11 +90607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484e8d9e74aec1642bf9d4616e376c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  target: {fileID: 0}
-  speed: 2
-  canFollowPlayer: 0
-  debox: {fileID: 426763619}
 --- !u!1 &1748825763
 GameObject:
   m_ObjectHideFlags: 0
