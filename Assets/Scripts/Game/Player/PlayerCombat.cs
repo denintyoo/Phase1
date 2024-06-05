@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
     public GameObject hitbox;
     private BoxCollider2D hitboxCollider;
     private bool isAttacking = false;
+    private Animator animator;
     public bool IsAttacking
     {
         get { return isAttacking; }
@@ -24,6 +25,7 @@ public class PlayerCombat : MonoBehaviour
     public void Awake()
     {
         hitboxCollider = hitbox.GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
     public void DoAttack()
     {
@@ -89,6 +91,8 @@ public class PlayerCombat : MonoBehaviour
 
         PositionHitbox(player.movement.lastDirection);
         Debug.Log($"I'm Attacking! {IsAttacking}");
+
+        animator.SetTrigger("Attack");
 
         // Attack Speed Cooldown
         yield return new WaitForSeconds(playerStats.AttackCooldown);
