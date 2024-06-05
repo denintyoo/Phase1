@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     // private SpriteRenderer spriteRenderer;
     [SerializeField] public string lastDirection;
     public bool canMove = true;
-    private bool moving = false;
+    public bool moving = false;
     public Vector2 movementDirection;
 
     public void Init()
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             // animator.SetFloat("Vertical", movementDirection.y);
             // animator.SetFloat("Speed", movementDirection.sqrMagnitude);
 
-            if (movementDirection.magnitude > 0.1f || movementDirection.magnitude < -0.1f)    // Check if moving and assign to "moving"
+            if (movementDirection.magnitude > 0.5f || movementDirection.magnitude < -0.5f)    // Check if moving and assign to "moving"
             {
                 moving = true;
                 // Store Last Movement Direction
@@ -60,12 +60,12 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 moving = false;
-
+                animator.SetBool("Moving", false);
             }
         }
         else
         {
-            // animator.SetFloat("Speed", 0);
+            animator.SetFloat("Speed", 0);
             rb.velocity = Vector2.zero;
             Debug.Log("cannot move");
             moving = false;
@@ -83,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            animator.SetBool("Moving", false);
             if (lastDirection == "Up")
             {
                 animator.SetFloat("Vertical", 1);
