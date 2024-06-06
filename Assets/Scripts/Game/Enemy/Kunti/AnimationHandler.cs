@@ -18,4 +18,8 @@ public class AnimationHandler : MonoBehaviour
         animator.SetFloat("Horizontal", chaseDirection.x);
         animator.SetFloat("Vertical", chaseDirection.y);
     }
+    public void chaseStop()
+    {
+        animator.SetBool("Chasing", false);
+    }
 }

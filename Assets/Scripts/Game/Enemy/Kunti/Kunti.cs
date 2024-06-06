@@ -1,7 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Kunti : MonoBehaviour
@@ -9,23 +7,39 @@ public class Kunti : MonoBehaviour
     public GameObject chaseStartHitbox;
     [SerializeField] public bool playerInRange;
     [SerializeField] public Coroutine capturePlayerPosition;
-    [SerializeField] public EnemyAttack enemyAttack;
     public Chase chase;
     public Idle idle;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
+{
+    if (playerInRange)
     {
-        if (playerInRange)
+        if (capturePlayerPosition == null)
         {
-            StartCoroutine(chase.CapturePlayerPositionRoutine());
-            chase.ChaseState();
+            capturePlayerPosition = StartCoroutine(chase.CapturePlayerPositionRoutine());
+            idle.idleStop();
+            Debug.Log("Player is in Range, Capturing player position...");
         }
     }
+    else
+    {
+        if (capturePlayerPosition != null)
+        {
+            StopCoroutine(capturePlayerPosition);
+            capturePlayerPosition = null;
+        }
+    }
+
+    if (!playerInRange && !chase.chasing)
+    {
+        idle.IdleState();
+    }
+}
 }
