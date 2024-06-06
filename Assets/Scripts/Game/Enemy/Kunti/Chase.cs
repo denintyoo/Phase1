@@ -11,17 +11,7 @@ public class Chase : MonoBehaviour
     public AnimationHandler animationHandler;
     private float switchThreshold = 0.5f;
     private float speed = 3f;
-    private Vector3 thisNewVector = Vector3.zero;
-    
-    // Start is called before the first frame update
-    void Awake()
-    {
-
-    }
-
-    void FixedUpdate()
-    {
-    }
+    public Vector3 thisNewVector = Vector3.zero;
 
     private void UpdateDirection() // Butuh Vector dari CapturePlayerPositionRoutine yaitu chaseTarget
     {
@@ -45,6 +35,7 @@ public class Chase : MonoBehaviour
 
     public void ChaseState()
     {
+        UpdateDirection();
         transform.position += thisNewVector * speed * Time.deltaTime;
         animationHandler.AnimateMoving(thisNewVector);
     }

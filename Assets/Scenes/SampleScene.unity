@@ -112421,6 +112421,7 @@ MonoBehaviour:
   lastKnownPlayerPosition: {x: 0, y: 0}
   playerTransform: {fileID: 1954163832}
   animationHandler: {fileID: 1930088010}
+  thisNewVector: {x: 0, y: 0, z: 0}
 --- !u!114 &1930088009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112462,7 +112463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95de5a63e69d38841b3a80f794d57d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 328549319}
+  chase: {fileID: 0}
 --- !u!1 &1954163828
 GameObject:
   m_ObjectHideFlags: 0
