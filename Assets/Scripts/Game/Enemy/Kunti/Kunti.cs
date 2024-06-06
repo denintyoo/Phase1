@@ -9,6 +9,7 @@ public class Kunti : MonoBehaviour
     public GameObject chaseStartHitbox;
     [SerializeField] public bool playerInRange;
     [SerializeField] public Coroutine capturePlayerPosition;
+    [SerializeField] public EnemyAttack enemyAttack;
     public Chase chase;
     public Idle idle;
     
