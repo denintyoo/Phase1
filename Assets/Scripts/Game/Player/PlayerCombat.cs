@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
     public GameObject hitbox;
     private BoxCollider2D hitboxCollider;
     private bool isAttacking = false;
+    private Animator animator;
     public bool IsAttacking
     {
         get { return isAttacking; }
@@ -18,15 +18,15 @@ public class PlayerCombat : MonoBehaviour
             { 
                 isAttacking = value; 
                 player.movement.SetCanMove(!isAttacking);
-                Debug.Log($"set canmove to{isAttacking}");
+                Debug.Log($"set canmove to {!isAttacking}");
             }
     }
 
     public void Awake()
     {
         hitboxCollider = hitbox.GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
-
     public void DoAttack()
     {
         if (!IsAttacking)
@@ -34,23 +34,44 @@ public class PlayerCombat : MonoBehaviour
             StartCoroutine(AttackRoutine());
         }
     }
-    private void PositionHitbox(Vector2 direction)
+    private void PositionHitbox(string direction)
     {
-        Vector2 targetDirection;
+        // Vector2 targetDirection;
         float distance = 0.2f;
-        
-        if (MathF.Sqrt(MathF.Pow(direction.x, 2)) > MathF.Sqrt(MathF.Pow(direction.y, 2)))
+        Vector2 targetDirection = Vector2.zero;
+
+
+        // if (Mathf.Sqrt(MathF.Pow(direction.x, 2)) > MathF.Sqrt(MathF.Pow(direction.y, 2)))
+        // {
+        //     targetDirection = Vector2.right * direction * distance;
+        // }
+        // else
+        // {
+        //     targetDirection = Vector2.up * direction * distance;
+        // }
+
+        // hitbox.transform.localPosition = targetDirection;
+
+        // Debug.Log(targetDirection);
+
+        if (direction == "Left")
         {
-            targetDirection = Vector2.right * direction * distance;
+            targetDirection = Vector2.left * distance;
+        } 
+        else if (direction == "Right")
+        {
+            targetDirection = Vector2.right * distance;
         }
-        else
+        else if (direction == "Up")
         {
-            targetDirection = Vector2.up * direction * distance;
+            targetDirection = Vector2.up * distance;
+        }
+        else if (direction == "Down")
+        {
+            targetDirection = Vector2.down * distance;
         }
 
         hitbox.transform.localPosition = targetDirection;
-        // Debug.Log(targetDirection);
-        Debug.Log(MathF.Abs(0));
     }
 
     public void colliderOn()
@@ -66,15 +87,18 @@ public class PlayerCombat : MonoBehaviour
     {
         IsAttacking = true;
         // Animation here
-        Debug.Log($"Attacking for {playerStats.AttackCooldown}");
+        // Debug.Log($"Attacking for {playerStats.AttackCooldown}");
+
+        PositionHitbox(player.movement.lastDirection);
+        Debug.Log($"I'm Attacking! {IsAttacking}");
+
+        animator.SetTrigger("Attack");
 
         // Attack Speed Cooldown
         yield return new WaitForSeconds(playerStats.AttackCooldown);
-        // Hitbox = transform.Find("Hitbox").gameObject;
-        PositionHitbox(player.movement.movementDirection);
-        IsAttacking = false;
         // Use Animation Event to flash hitbox
+        IsAttacking = false;
 
-        Debug.Log("Attack finished.");
+        // Debug.Log("Attack finished.");
     }
 }

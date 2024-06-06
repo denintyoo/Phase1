@@ -10,8 +10,6 @@ public class Hitbox : MonoBehaviour
     void Start()
     {
         damage = MainPlayerClass.stats.Attack;
-
-        
     }
 
     void OnTriggerEnter2D(Collider2D Collision)
@@ -24,6 +22,6 @@ public class Hitbox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

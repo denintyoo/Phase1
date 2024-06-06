@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,11 +20,11 @@ public class CameraController : MonoBehaviour
     {
         //transform.position = new Vector3(target.transform.position.x, target.transform.position.y,  transform.position.z);
 
-        if(transform.position != target.position)
+        if (transform.position != target.position)
         {
-            float targetx = Mathf.Clamp(target.position.x,minPosition.x, maxPosition.x);
+            float targetx = Mathf.Clamp(target.position.x, minPosition.x, maxPosition.x);
 
-            float targety = Mathf.Clamp(target.position.y,minPosition.y, maxPosition.y);
+            float targety = Mathf.Clamp(target.position.y, minPosition.y, maxPosition.y);
 
 
             Vector3 targetPosition = new Vector3(targetx, targety, transform.position.z);

@@ -1,27 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    private bool lastIsLeft; // to verify that last direction is left (delete and edit playerAnimator if player already have separate left and right idle sprite)
+    // private SpriteRenderer spriteRenderer;
+    [SerializeField] public string lastDirection;
     public bool canMove = true;
-    private bool moving = false;
+    public bool moving = false;
     public Vector2 movementDirection;
-
-    
 
     public void Init()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -32,58 +28,78 @@ public class PlayerMovement : MonoBehaviour
             movementDirection.x = Input.GetAxisRaw("Horizontal");
             movementDirection.y = Input.GetAxisRaw("Vertical");
             movementDirection = new Vector2(movementDirection.x, movementDirection.y).normalized;
-            // Debug.Log($"direction {movementDirection}");
-            
-            AnimationHandler();
-            // animator.SetFloat("Horizontal", movement.x);
-            // animator.SetFloat("Vertical", movement.y);
-            // animator.SetFloat("Speed", movement.sqrMagnitude);
+            // animator.SetFloat("Horizontal", movementDirection.x);
+            // animator.SetFloat("Vertical", movementDirection.y);
+            // animator.SetFloat("Speed", movementDirection.sqrMagnitude);
+
+            if (movementDirection.magnitude > 0.5f || movementDirection.magnitude < -0.5f)    // Check if moving and assign to "moving"
+            {
+                moving = true;
+                // Store Last Movement Direction
+                if (movementDirection.y > 0)
+                {
+                    lastDirection = "Up";
+                }
+                else if (movementDirection.y < 0)
+                {
+                    lastDirection = "Down";
+                }
+                else                             // Prioritize Up Down first
+                {
+                    if (movementDirection.x < 0)
+                    {
+                        lastDirection = "Left";
+                    }
+                    else if (movementDirection.x > 0)
+                    {
+                        lastDirection = "Right";
+                    }
+                }
+                AnimationHandler();
+            }
+            else
+            {
+                moving = false;
+                animator.SetBool("Moving", false);
+            }
         }
         else
         {
-            rb.velocity = Vector2.zero;
-            // Debug.Log("cannot move");
             animator.SetFloat("Speed", 0);
+            rb.velocity = Vector2.zero;
+            Debug.Log("cannot move");
+            moving = false;
+            AnimationHandler();
         }
     }
 
     // Magic happens here
     private void AnimationHandler()
-    {   
-        if (movementDirection.magnitude > 0.1f || movementDirection.magnitude < -0.1f)    // Check if moving and assign to "moving"
-        {
-            moving = true;
-        }
-        else
-        {
-            moving = false;
-        }
-        
-        //* LastIsLeft Checker
-        if (movementDirection.x < 0)                                            // Check if last horizontal movementDirection is to the left (Delete if player have both side of horizontal animation)
-        {
-            lastIsLeft = true;
-        }
-        else if (movementDirection.x > 0 || movementDirection.y != 0)                   // if any other direction is the last movementDirection, set to false
-        {
-            lastIsLeft = false;
-        }
-
-        if (lastIsLeft == true && !moving)                            // Check if LastIsLeft and not moving, then flipX
-        {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
-        }
-
+    {
         if (moving)                                                     // if "moving" is true then animate 4 cardinal direction
         {
             animator.SetFloat("Horizontal", movementDirection.x);
             animator.SetFloat("Vertical", movementDirection.y);
         }
-
+        else
+        {
+            if (lastDirection == "Up")
+            {
+                animator.SetFloat("Vertical", 1);
+            }
+            else if (lastDirection == "Down")
+            {
+                animator.SetFloat("Vertical", -1);
+            }
+            else if (lastDirection == "Left")
+            {
+                animator.SetFloat("Horizontal", -1);
+            }
+            else if (lastDirection == "Right")
+            {
+                animator.SetFloat("Horizontal", 1);
+            }
+        }
         animator.SetBool("Moving", moving);
     }
 
@@ -105,7 +121,5 @@ public class PlayerMovement : MonoBehaviour
         canMove = value;
         Debug.Log($"set canmove to{canMove}");
     }
-
-    
 }
 
