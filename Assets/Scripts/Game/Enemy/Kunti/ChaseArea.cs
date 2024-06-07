@@ -8,14 +8,12 @@ public class ChaseArea : MonoBehaviour
     private CircleCollider2D chaseArea;
     public LayerMask obstructionLayer;
     public GameObject player;
-    
 
 
     void Awake()
     {
         chaseArea = GetComponent<CircleCollider2D>();
     }
-    // Start is called before the first frame update
 
     private bool IsObstructed()
     {

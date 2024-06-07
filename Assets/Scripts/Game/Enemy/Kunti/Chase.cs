@@ -19,7 +19,7 @@ public class Chase : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(debugThisNewVector());
+        // StartCoroutine(debugThisNewVector());
     }
 
     void FixedUpdate()
