@@ -14,7 +14,7 @@ public class Hitbox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D Collision)
     {
-        if (Collision.CompareTag("Enemy"))
+        if (Collision.CompareTag("Kunti"))
         {
             Collision.SendMessage("TakeDamage", damage);
         }

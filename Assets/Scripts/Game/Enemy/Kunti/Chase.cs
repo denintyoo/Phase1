@@ -9,7 +9,7 @@ using UnityEngine;
 public class Chase : MonoBehaviour
 {
     
-    public Vector2 lastKnownPlayerPosition;
+    private Vector2 lastKnownPlayerPosition;
     public Transform playerTransform;
     public AnimationHandler animationHandler;
     private float switchThreshold = 0.5f;
@@ -90,5 +90,10 @@ public class Chase : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Debug.Log(thisNewVector);
         }
+    }
+
+    private void Awake()
+    {
+        playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 }

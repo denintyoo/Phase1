@@ -13,6 +13,7 @@ public class ChaseArea : MonoBehaviour
     void Awake()
     {
         chaseArea = GetComponent<CircleCollider2D>();
+        player = GameObject.FindWithTag("Player");
     }
 
     private bool IsObstructed()

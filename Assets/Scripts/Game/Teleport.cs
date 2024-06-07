@@ -19,6 +19,7 @@ public class Teleport : MonoBehaviour
     {
         player.transform.position = destination.position; // Memindahkan pemain ke lokasi tujuan teleportasi
         player.GetComponent<PlayerMovement>().canMove = false; // Menonaktifkan skrip pergerakan pemain
+        player.GetComponent<PlayerHealth>().spawnpoint = destination;
         Invoke("EnablePlayerMovement", delayTime); // Memanggil fungsi untuk mengaktifkan kembali pergerakan pemain setelah penundaan
     }
 

@@ -93,7 +93,7 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log($"I'm Attacking! {IsAttacking}");
 
         animator.SetTrigger("Attack");
-
+        hitboxCollider.enabled = true;
         // Attack Speed Cooldown
         yield return new WaitForSeconds(playerStats.AttackCooldown);
         // Use Animation Event to flash hitbox

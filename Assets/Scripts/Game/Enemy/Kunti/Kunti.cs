@@ -10,11 +10,13 @@ public class Kunti : MonoBehaviour
     public CapsuleCollider2D capsuleCollider2D;
     public Chase chase;
     public Idle idle;
+    public JumlahMati jumlahMati;
     
     
     // Start is called before the first frame update
     void Awake()
     {
+        jumlahMati = UnityEngine.Object.FindObjectOfType<JumlahMati>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
@@ -47,5 +49,11 @@ public class Kunti : MonoBehaviour
         {
             chase.chasing = true;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        jumlahMati.Jumlah++ ;
+        Destroy(gameObject);
     }
 }
