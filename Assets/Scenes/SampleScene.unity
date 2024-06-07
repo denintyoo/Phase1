@@ -423,6 +423,10 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  player: {fileID: 1954163828}
 --- !u!1 &270389651
 GameObject:
   m_ObjectHideFlags: 0
@@ -29762,7 +29766,7 @@ GameObject:
   - component: {fileID: 583092606}
   - component: {fileID: 583092605}
   - component: {fileID: 583092604}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SolidObject1-1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35038,7 +35042,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.007843138}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -83517,9 +83521,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1930088004}
   - {fileID: 1693148680}
   - {fileID: 1596076789}
-  - {fileID: 1930088004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1313025169
@@ -90578,18 +90582,6 @@ Transform:
   - {fileID: 1015062650}
   m_Father: {fileID: 1310494334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1596076790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596076788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484e8d9e74aec1642bf9d4616e376c0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1596076791
 Animator:
   serializedVersion: 5
@@ -91101,18 +91093,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1693148682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693148676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484e8d9e74aec1642bf9d4616e376c0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1748825763
 GameObject:
   m_ObjectHideFlags: 0
@@ -102730,7 +102710,7 @@ GameObject:
   - component: {fileID: 1917146090}
   - component: {fileID: 1917146089}
   - component: {fileID: 1917146088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SolidObject1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112675,6 +112655,7 @@ GameObject:
   - component: {fileID: 1930088009}
   - component: {fileID: 1930088008}
   - component: {fileID: 1930088007}
+  - component: {fileID: 1930088010}
   m_Layer: 0
   m_Name: Kunti
   m_TagString: Untagged
@@ -112691,7 +112672,7 @@ Transform:
   m_GameObject: {fileID: 1930088003}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: 7.39, z: -1.0302271}
+  m_LocalPosition: {x: 4.53, y: 6.47, z: -1.0302271}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -112798,6 +112779,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastKnownPlayerPosition: {x: 0, y: 0}
   playerTransform: {fileID: 1954163832}
+  animationHandler: {fileID: 1930088010}
+  thisNewVector: {x: 0, y: 0, z: 0}
+  chasing: 0
 --- !u!114 &1930088009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112814,6 +112798,18 @@ MonoBehaviour:
   playerInRange: 0
   chase: {fileID: 1930088008}
   idle: {fileID: 1930088007}
+--- !u!114 &1930088010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930088003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d060b37993cb624c93965948369ed8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1954163828
 GameObject:
   m_ObjectHideFlags: 0
@@ -112944,7 +112940,7 @@ Transform:
   m_GameObject: {fileID: 1954163828}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.3, y: -17.9, z: 0}
+  m_LocalPosition: {x: 11.41, y: 3.31, z: 0}
   m_LocalScale: {x: 8.115114, y: 7.5390143, z: 0.9140083}
   m_ConstrainProportionsScale: 0
   m_Children:

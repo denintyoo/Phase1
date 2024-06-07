@@ -6,31 +6,29 @@ public class ChaseArea : MonoBehaviour
 {
     public Kunti kunti;
     private CircleCollider2D chaseArea;
+    public LayerMask obstructionLayer;
+    public GameObject player;
 
 
     void Awake()
     {
         chaseArea = GetComponent<CircleCollider2D>();
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private bool IsObstructed()
     {
-        
+        Vector2 direction = player.transform.position - kunti.transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Vector2.Distance(kunti.transform.position, player.transform.position), obstructionLayer);
+        return hit.collider != null;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D other)
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !IsObstructed())
         {
-            // Player is still within the chase range
+            // Player is within chase range and not obstructed
             kunti.playerInRange = true;
-            chaseArea.radius = 2f;
+            chaseArea.radius = 2f; // Alerted state, this is no longer initial detection hitbox. This is the entire detection area.
         }
     }
 

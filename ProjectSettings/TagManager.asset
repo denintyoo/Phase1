@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
   - 
@@ -49,4 +50,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 1166241887
+    locked: 0
+  - name: Wall
+    uniqueID: 687994063
     locked: 0

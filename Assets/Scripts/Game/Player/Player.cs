@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-
 {
     public PlayerHealth health;
     public PlayerMovement movement;
