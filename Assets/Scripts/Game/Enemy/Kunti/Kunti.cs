@@ -29,7 +29,7 @@ public class Kunti : MonoBehaviour
         }
     }
     else
-    {
+    {   
         if (capturePlayerPosition != null)
         {
             StopCoroutine(capturePlayerPosition);
@@ -40,6 +40,10 @@ public class Kunti : MonoBehaviour
     if (!playerInRange && !chase.chasing)
     {
         idle.IdleState();
+    }
+    else
+    {
+        chase.chasing = true;
     }
 }
 }

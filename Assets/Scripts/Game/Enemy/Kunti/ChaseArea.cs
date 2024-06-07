@@ -8,6 +8,7 @@ public class ChaseArea : MonoBehaviour
     private CircleCollider2D chaseArea;
     public LayerMask obstructionLayer;
     public GameObject player;
+    
 
 
     void Awake()
@@ -23,7 +24,7 @@ public class ChaseArea : MonoBehaviour
         return hit.collider != null;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !IsObstructed())
         {

@@ -14,7 +14,7 @@ public class Chase : MonoBehaviour
     public AnimationHandler animationHandler;
     private float switchThreshold = 0.5f;
     private float speed = 3f;
-    public Vector3 thisNewVector = Vector3.zero;
+    public Vector3 thisNewVector;
     public bool chasing = false;
 
     void Start()
@@ -24,16 +24,19 @@ public class Chase : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (chasing == true)
+        {
         // Keep chasing to last known target position. Only stopped if last known target is no longer updated and is close.
-        float distanceToTarget = Vector3.Distance(transform.position, lastKnownPlayerPosition);
-        if (distanceToTarget > 1f)
-        {
-            ChaseState();
-        }
-        else
-        {
-            chasing = false;
-            animationHandler.chaseStop();
+            float distanceToTarget = Vector3.Distance(transform.position, lastKnownPlayerPosition);
+            if (distanceToTarget > 1f)
+            {
+                ChaseState();
+            }
+            else
+            {
+                chasing = false;
+                animationHandler.chaseStop();
+            }
         }
     }
 
