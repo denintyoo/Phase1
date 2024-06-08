@@ -6,8 +6,10 @@ using System.Collections;
 public class PrologText : MonoBehaviour
 {
     public Text prologText;
-    public string fullText = @" Di suatu wilayah tinggal seorang keluarga, kepala keluarga tersebut memiliki kekuatan mistis. Suatu ketika malapetaka menimpa keluarga tersebut.
-Jiwa anaknya telah dibawa ke dimensi lain. Mengetahui hal tersebut ayahnya berusaha menyelamatkan anaknya dengan masuk dimensi lain";
+    public string fullText = @" Di suatu wilayah tinggal seorang keluarga, kepala keluarga tersebut memiliki kekuatan mistis. 
+Suatu ketika malapetaka menimpa keluarga tersebut.
+Jiwa anaknya telah dibawa ke dimensi lain. 
+Mengetahui hal tersebut ayahnya berusaha menyelamatkan anaknya dengan masuk dimensi lain";
     public float delay = 0.1f;
     public GameObject continueTextObj; // The "klik untuk melanjutkan" text object
     public string nextSceneName = "Phase1"; // The name of the scene to load
