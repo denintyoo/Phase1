@@ -4,28 +4,12 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-  //public void TakeDamage(int damage)
-    //{
-     // if (!invincible)
-    //  {
-     //   Debug.Log(damage);
-    //    invincible = true;
-       // StartCoroutine(startinvicibletimer());
-      //}
-        
-   // }
-
-  //private bool invincible = false;
-  //private IEnumerator startinvicibletimer()
- // {
-   // yield return new WaitForSeconds(1);
-   // invincible = false;
- // }
-
     public int maxHealth = 10;
     public int currentHealth;
     public HealthBar healthBar;
     public Transform spawnpoint;
+    public AudioSource hitSound; // Add an AudioSource component
+    public AudioClip hitClip; // Add a sound clip for the hit sound
 
     private void Start()
     {
@@ -35,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-       if (currentHealth == 0)
+        if (currentHealth == 0)
         {
             currentHealth = maxHealth;
             healthBar.SetHealth(maxHealth);
@@ -47,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        PlayHitSound(); // Play the hit sound when taking damage
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,5 +40,11 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(2);
         }
+    }
+
+    private void PlayHitSound()
+    {
+        hitSound.clip = hitClip;
+        hitSound.Play();
     }
 }
