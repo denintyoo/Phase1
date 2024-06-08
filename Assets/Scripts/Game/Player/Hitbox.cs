@@ -1,27 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Hitbox : MonoBehaviour
+public class DamageHandler : MonoBehaviour
 {
-    [SerializeField] private Player MainPlayerClass;
-    private int damage;
-    // Start is called before the first frame update
-    void Start()
-    {
-        damage = MainPlayerClass.stats.Attack;
-    }
+    public float damage = 10f;
+    public float invincibilityDuration = 2f; // Durasi i-frame
+    private bool isInvincible = false; // Apakah objek sedang dalam kondisi i-frame
 
-    void OnTriggerEnter2D(Collider2D Collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Collision.CompareTag("Kunti"))
+        if (collision.CompareTag("Kunti") && !isInvincible)
         {
-            Collision.SendMessage("TakeDamage", damage);
+            collision.SendMessage("TakeDamage", damage);
+            StartCoroutine(InvincibilityCoroutine());
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
 
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
     }
 }

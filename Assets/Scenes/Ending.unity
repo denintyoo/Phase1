@@ -162,38 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
-  m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -411,7 +379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.3556, y: 2.0353}
+  m_AnchoredPosition: {x: -1.3556, y: -25.395}
   m_SizeDelta: {x: 558.327, y: 337.8763}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1139273110
@@ -558,7 +526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.3556, y: -78}
+  m_AnchoredPosition: {x: 0.00023496, y: -94}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1360725127
@@ -595,8 +563,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.9773865, y: 0}
-  m_SizeDelta: {x: -72.7388, y: 0}
+  m_AnchoredPosition: {x: 0.00024414062, y: -2.0196075}
+  m_SizeDelta: {x: -0.00048828, y: 68.6672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360725129
 MonoBehaviour:
@@ -618,7 +586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 706a3171d0e042a4a9cca8ddb718a970, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -756,13 +724,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prologText: {fileID: 1000394820}
-  fullText: " setelah sang ayah bersusah payah menghindari kunti, akhirnya ia menemukan
-    jiwa anaknya tergeletak di tengah tengah antara pepohonan. Sang ayah pun berbicara
-    dan membantu anaknya pulang melalui portal yang ada disekitarnya\r"
+  fullText: " setelah sang ayah bersusah payah menghindari dan melawan kunti, akhirnya
+    ia menemukan jiwa anaknya tergeletak di tengah tengah antara pepohonan. Sang
+    ayah pun berbicara dan membantu anaknya pulang melalui portal yang ada disekitarnya\r"
   delay: 0.01
   continueTextObj: {fileID: 1931334492}
   nextSceneName: mainMenu
-  theEndText: {fileID: 1174145417}
 --- !u!1 &1931334492
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.97736, y: -151.9}
+  m_AnchoredPosition: {x: -1.3556, y: -134}
   m_SizeDelta: {x: 246.7833, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1931334494
