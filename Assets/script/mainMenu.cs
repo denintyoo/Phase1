@@ -13,11 +13,11 @@ public class mainMenu : MonoBehaviour
     }
     public void pause()
     {
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(3);
     }
     public void setting()
     {
-        SceneManager.LoadSceneAsync(3);
+        SceneManager.LoadSceneAsync(2);
     }
     public void settingPause()
     {

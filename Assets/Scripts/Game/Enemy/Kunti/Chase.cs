@@ -1,9 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.ReorderableList;
-using UnityEditor;
 using UnityEngine;
 
 public class Chase : MonoBehaviour
