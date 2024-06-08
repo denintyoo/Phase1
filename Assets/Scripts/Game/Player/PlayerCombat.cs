@@ -96,6 +96,8 @@ public class PlayerCombat : MonoBehaviour
         hitboxCollider.enabled = true;
         // Attack Speed Cooldown
         yield return new WaitForSeconds(playerStats.AttackCooldown);
+
+        hitboxCollider.enabled = false;
         // Use Animation Event to flash hitbox
         IsAttacking = false;
 
