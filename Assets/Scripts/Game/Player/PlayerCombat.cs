@@ -83,22 +83,27 @@ public class PlayerCombat : MonoBehaviour
         hitboxCollider.enabled = false;
     }
 
-    private IEnumerator AttackRoutine()
-    {
-        IsAttacking = true;
-        // Animation here
-        // Debug.Log($"Attacking for {playerStats.AttackCooldown}");
+   private IEnumerator AttackRoutine()
+{
+    IsAttacking = true;
+    // Animation here
+    // Debug.Log($"Attacking for {playerStats.AttackCooldown}");
 
-        PositionHitbox(player.movement.lastDirection);
-        Debug.Log($"I'm Attacking! {IsAttacking}");
+    PositionHitbox(player.movement.lastDirection);
+    Debug.Log($"I'm Attacking! {IsAttacking}");
 
-        animator.SetTrigger("Attack");
-        hitboxCollider.enabled = true;
-        // Attack Speed Cooldown
-        yield return new WaitForSeconds(playerStats.AttackCooldown);
-        // Use Animation Event to flash hitbox
-        IsAttacking = false;
+    animator.SetTrigger("Attack");
 
-        // Debug.Log("Attack finished.");
-    }
+    // Enable hitbox collider for a short duration (e.g., 0.2 seconds)
+    hitboxCollider.enabled = true;
+    yield return new WaitForSeconds(0.2f);
+    hitboxCollider.enabled = false;
+
+    // Attack Speed Cooldown
+    yield return new WaitForSeconds(playerStats.AttackCooldown - 0.2f);
+    // Use Animation Event to flash hitbox
+    IsAttacking = false;
+
+    // Debug.Log("Attack finished.");
+}
 }
